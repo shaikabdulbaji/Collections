@@ -1,0 +1,167 @@
+package a3_LinkedList_in_Java;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+
+/*
+ * LinkedList<String> li1 = new LinkedList<>(); --> edi LinkedList lonea LinkedList(I) methods use ki
+   List<String> li2 = new LinkedList<>(); --> edi linked list lonea List(I) methods use ki
+   Deque<String> li3 = new LinkedList<>(); --> edi linked list lonea Deque(I) methods use ki
+   Queue<String> li4 = new LinkedList<>(); --> edi linked list lonea Queue(I) methods use ki
+   Collection<String> li5 = new LinkedList<>();	--> edi linked list lonea Collection(I) methods use ki
+   Iterable<String> li6 = new LinkedList<>(); --> edi linked list lonea Iterable(I) methods use ki
+   
+ * e linkedlist gurinchi matladukovali antea denilo main "Node" ani untundi.
+ * e node lo 3 parts untai like "Previous, Iteam, Next".
+ * e node gurninchi inka detail ga kavali antea vaka example chepukundam and deniki reference kosam 
+   vaka screenshot kuda attach chestanu.
+   denilo main ga manam train bogies tisukundam andulo 4 bogies unai vatilo 1st boghie ni three parts like
+   prev,iteam, next alaga 4 bogies ki chestam. epudu 4 boghies ki three three partss unai prev, iteam, 
+   next. aa boghies names s1, s2, s3, s4. ekada prathi boghie vaka node kinda leka.
+   s1 --> prev(null), iteam(s1), next(s2)
+   s2 --> prev(s1), iteam(s2), next(s3)
+   s3 --> prev(s2), iteam(s3), next(s4)
+   s4 --> prev(s3), iteam(s4), next(null)
+   
+ * asal 1st node create inapudu daniki em undavu kabati size=0, prev=null, next=null.
+ 
+ * manam vaka object create cheasamu LinkedList ki 
+   LinkedList<String> li1 = new LinkedList<>();
+   li1.add("sk1"); --> prev(null), iteam(sk1), next(null) deniki memory lo address 101.
+   size = 1, firstnode = 101, lastnode = 101.
+   
+   li2.add("sk2"); --> prev(101), iteam(sk2), next(null) deniki memory lo address 102.
+   size = 2, firstnode = 101, lastnode = 102.
+   
+   li2.add("sk3"); --> prev(102), iteam(sk2), next(null) deniki memory lo address 103.
+   size = 1, firstnode = 101, lastnode = 103.
+   
+   deni gurinchi teliyali antea Practical example of LinkedList anea screenshot ni refer chaiyandi.
+   
+ * LinkedList ni apudaina manam predefined size tho create chaiyaleamu.
+ 
+ * LinkedList<String> li1 = new LinkedList<>();
+   System.out.println(li1);
+   ela echi manam linkedlist object dagara toggle point peti debug chestea aa li1 kada mousehour chestea
+   manam chudochu first, last, size aneavi. ela debug chaiyali antea press "fn+f6" chaiyali.
+   
+ * LinkedList<String> li1 = new LinkedList<>();
+   li1.add("sk1");
+   li1.add("sk2");
+   li1.add("sk3");
+   System.out.println(li1);
+   
+   deni manam debug chestea, debug chaiyali antea press "fn+f6" chaiyali, ela chesthu veltea last lo 
+   manam li1 kada mousehour chestea manam chudochu first, last, size aneavi, aa first lo manam first 
+   echina element untundi sk1 ani dani prev=null and next emo sk2 address and last ela so on.
+   manam attach cheasina screenshoots lo
+   LinkedList 1 --> denilo only first and last and size ani mudu untai, size manam ani elements estea ani.
+   					first and last gurinchi tarvata images lo explain cheasukundam.
+   LinkedList 2 --> denilo first and last ani rendu untai, aa first pai click cheasi chustea danilo 
+   					iteam, next, prev untai. iteam antea present di untundi "sk1", next lo tarvata iteam 
+   					yoka address untundi, prev lo null untundi nduku antea mundhu em leadu ga element.
+   LinkedList 3 --> denilo first and last ani rendu untai, aa first pai click cheasi chustea danilo 
+   					iteam, next, prev untai. iteam antea present di untundi "sk2", next lo tarvata iteam 
+   					yoka address untundi, prev lo "sk1" yoka address untundi.
+   LinkedList 4 --> denilo first and last ani rendu untai, aa first pai click cheasi chustea danilo 
+   					iteam, next, prev untai. iteam antea present di untundi "sk3", next lo tarvata iteam 
+   					yoka address untundi, prev lo "sk2" yoka address untundi.
+   LinkedList 5 --> epati daka first gurinchi matladukunam denilo last gurinchi matladukuntam, e pic lo 
+   					paina matladukunadi antha reverse.
+   
+ * By default ga LinkedList aneadi synchronized kadu.
+   synchronized antea multiple threads ni handle chaikapovatam.
+   Asynchronized antea multiple threads ni handle chaiyatam. (problem apudaina ravachu)
+   
+ * Important points to remember :
+   1. What is the default capacity? (Capacity when elements are not added to the list) --> 0
+   2. What is the initial capacity? --> 0
+   	  default capacity and initial capacity rendu zero nea nduku antea manam ani elements aatach 
+   	  chestea antha capacity anthea.
+   3. Does it allow duplicate elements? --> Yes
+   4. Does it allow null values? --> Yes
+   5. Does it maintain the insertion order? --> Yes
+   6. Does it maintain the sorted order? --> No
+   7. Does it offer the random access of elements? --> Yes
+   8. Is it synchronised? --> No (if yes itea, manam explicit ga "Collections.synchronizedList(li1);"
+      e statement estea apudu synchronize iedi LinkedList.
+   9. What is it good at? --> ArrayList chepukunapudu manam vaka point cheapukunam, 
+      ArrayList deaniki good elements ni add cheasukotaniki and elements ni retrive cheasukotaniki 
+      kani deaniki bad elements ni remove chaiyataniki, elements ni update chaiyataniki and elements ni
+      middle lo add chaiyataniki.
+      LinkedList deaniki good elements remove chaiyataniki, elements ni update chaiyataniki and elements 
+      ni middle lo add chaiyataniki.
+      
+      ArrayList data ni store cheasukotaniki and get cheasukotaniki baguntundi.
+      LinkedList data ni middle lo add chaaiytaniki baguntundi, paina LinkedList deaniki good o 
+      chepukunam kada avi cheasinapudu alla prev, next evi rendu maritea chalu ala performance baguntundi.
+      adea ArrayList lo adana middle lo add chestea motham shift aavali ala performance tagipodi.
+      
+      LinkedList data ni manupalation chaiyali anapudu very very good option.
+      
+   
+ */
+
+public class LinkedList_in_java {
+
+	public static void main(String[] args) {
+
+//		LinkedList<String> li1 = new LinkedList<>(); 
+//		List<String> li2 = new LinkedList<>();
+//		Deque<String> li3 = new LinkedList<>();
+//		Queue<String> li4 = new LinkedList<>();
+//		Collection<String> li5 = new LinkedList<>();	
+//		Iterable<String> li6 = new LinkedList<>();
+		
+		ArrayList<String> all = new ArrayList<>();
+		all.add("s1");
+		all.add("s2");
+		
+		LinkedList<String> li1 = new LinkedList<>();
+		li1.add("sk1");
+		li1.add("sk2");
+		li1.add("sk3");
+		li1.add("sk1");
+		li1.add("sk2");
+		li1.add("sk3");
+		li1.add(null);
+		li1.add(null);
+		li1.add("sk3");
+		li1.add(0, "sk4");
+		
+		/*
+		//For adding all elements
+		//li1.addAll(all);
+		li1.addAll(0, all);
+		
+		//For Removing single element
+		li1.remove(0);
+		li1.removeAll(all);
+		
+		//For Removing all elements (or) Clearing all elements
+		//li1.clear();
+		
+		//For Retriving single element
+		System.out.println(li1.get(1));
+		System.out.println(li1.get(3));
+		
+		//For Verification of elements
+		System.out.println(li1.contains("sk2"));
+		System.out.println(li1.contains("sk5"));
+		
+		//For Updating of elements
+		System.out.println(li1.set(0, null));
+		System.out.println(li1.set(1, "sk"));
+		
+		//Synchronization
+		Collections.synchronizedList(li1);
+		*/
+		
+		
+		System.out.println(li1);
+		
+		
+	}
+
+}

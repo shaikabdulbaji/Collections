@@ -1,0 +1,253 @@
+package a5_Queue_in_Java;
+
+import java.util.ArrayDeque;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+/*
+ * Queue aaneadi collections framework nunchi vastundi. Queue is a part of collections interface 
+   extending the collections framework.
+   
+ * Manaki asal queue default size vacheasi "11" adi ala telsidi antea manam priorityqueue ki object
+   create cheasamu kada aa priorityqueue pai mousehouver cheasi press "fn+f3" apudu adi default size ki
+   point iedi malli aa default_initial_size pai mousehouver cheasi press "fn+f3" apudu adi size 
+   chupistadi.
+   
+ * multiple elements aneadi store cheasukotaniki java aneadi queue anea interface ni introduce cheasindi
+   but ekada vaka chinna question list and daniki sambandinchina classes ani ela multiple elements store
+   cheasea panea avi cheaseadi.
+   itea e list ki and queue is difference enti ante, e queue lo vaka special requirement undi aa 
+   requirement ni list and ist lo una a classes fullfill chaiyaleavu andukea e queue.
+   aa reuirement enti antea FIFO(First In First Out) ana mata.
+   Stack --> LIFO (Last In First Out).
+   Queue --> FIFO (First In First Out).
+   
+   Example :
+   Stack --> LIFO (Last In First Out).
+     	|-------| --> Last pentindi last remove chaiyatam.
+     	|		|	
+     	|		|
+     	|		|
+     	
+   Queue --> FIFO (First In First Out).
+     	|		|
+     	|		|	
+     	|		|
+     	|-------| --> First pentindi first remove chaiyatam.
+   
+   In Queue there are 3 classes there are PriorityQueue, ArrayDeque, LinkedList.
+   ArrayDeque, LinkedList classes implements Deque interface and LinkedList implements List interface 
+   also.
+   
+   practical examples of "Queue" :
+   1. cinema ticket kosam "Queue" lo ninchuntam first ticket tisukundu first bayatiki vastadu.
+   2. hospital lo doctor dagara op "Queue" lo pilustaru first evaru vastaro valani pilustaru.
+   3. resturant lo first evaru order estea valaki food prepare ie valakea first order vachidi.
+   
+   practical examples of "PriorityQueue" :
+   1. hospital lo doctor dagara op "Queue" lo pilustaru first evaru vastaro valani pilustaru, kani cases
+      lo vip's vastaru and koni cases lo accident cases vastai and koni cases lo severe patients vastaru
+      elanti time lo public ni chudatam kana elanti urgent cases chudali alanea "Queue" anea concept lo 
+      kuda koni elements ki priority evataniki "PriorityQueue" use chestamu.
+      
+      urgency == critcality == PriorityQueue.
+      
+      simple ga "Queue" --> "manam Queue loki add cheasina elements ni FIFO(First In First Out) method lo 
+      out (or) bayataki tistea dani Queue antamu" (or) "manam a element first estea aa element 
+      first bayataki ratanea queue antamu".
+      
+      simple ga "PriorityQueue" --> "manam Queue loki add cheasina elements ni priority basis lo out 
+      (or) bayataki tistea dani PriorityQueue antamu".
+      
+      priorityqueue lo memory ala untadi antea "head" and "tail" rupam lo untadi.
+      
+      e priorityqueue lo manam ani elements echina or add cheasina highest priority una element a head 
+      loki veltundi. migitha elements ani ala paditea ala untai memory lo.
+    
+   Queue ki sambandinchina classes mothaniki e methods a vadtam :   
+   Addition - offer, add.
+   Retrival - peek.
+   Removal - poll, remove.
+   
+   Addition - offer, add. --> offer pai mousehour cheasi "fn+f3" press chestea danilo internal ga em 
+   method untea akadiki point iedi.
+   alagea add pai mousehour cheasi "fn+f3" press chestea danilo internal ga malli offer anea method nea 
+   point chestundi.
+   that's why both are same methods.
+   
+   Retrival - peek. --> peek antea retrive chaiyatam, edi only get (or) retrive chestundi but remove
+   chaiyadu.
+   e peek method only head lo una element a retrive chestundi.
+   e peek aneadi ani sarlu echina ani sarlu head lo una element a retrive iedi.
+   
+   Removal - poll, remove. --> poll or remove both are same methods. 
+   poll or remove estea head lo element a remove iedi, vaka vela priorityqueue lo em elements leakapotea
+   nuvu "peek" or "poll" method vaditea adi "null" ni retrive chestundi adenti manam akada object create 
+   cheaseatapudu integer echamu kada zero ravali kani null vastundi enti antea aa priorityqueue internal
+   ga array danilo objects untai ga aa object yoka default value null.
+   adea vaka vela "remove" anea method vaditea priorityqueue lo em elements leanapudu apudu exception 
+   vastadi.
+   
+   priorityqueue lo apatikaina while loop(correct priority) vadalli for-each loop(gives without
+   priority) vadakudau.
+   
+ * Important points to remember :
+   1. What is the default capacity? --> 11
+   2. What is the initial capacity? --> 11
+   3. Does it allow duplicate elements? --> Yes
+   4. Does it allow null values? --> Yes
+   5. Does it maintain the insertion order? --> Yes
+   6. Does it maintain the sorted order? --> No
+   7. Does it offer the random access of elements? --> Yes
+   8. Is it synchronised? --> No (if yes itea, manam explicit ga "Collections.synchronizedList(li1);"
+      e statement estea apudu synchronize iedi LinkedList.
+   9. What is it good at? --> 
+   
+=========================================================================================================
+   
+ * Main ga PriorityQueue ki ArrayDeque ki difference enti antea 
+   priorityqueue lo head dagara nunchea deletion start iedi, but
+   arraydeque lo head and tail two sides nunchi deletion start iedi.
+   
+ * Manaki asal arraydeque default size vacheasi "17" adi ala telsidi antea manam arraydeque pai 
+   mousehouver cheasi press "fn+f3" apudu adi default size ki point iedi.
+   
+ * PriorityQueue ki e methods untai. 
+   Addition - offer, add.
+   Retrival - peek.
+   Removal - poll, remove.
+   
+ * ArrayDeque ki elanti same methods a untai, manam arraydeque ki head and tail ani chepukunam kada 
+   alagea First and Last ani methods kuda untai e addition, retrival, removal ki.
+   Addition - offer, offerFirst, offerLast, add, addFirst, addLast.
+   ekada offerFirst ki first priority untadi alagea last ki kuda offerLast kea priority akuva undi,
+   tarvatea addFirst ina addLast ina.
+   Retrival - peek, peekFirst, peekLast.
+   Removal - poll, pollFirst, pollLast, remove, removeFirst, removeLast.
+   
+ * Important points to remember :
+   1. What is the default capacity? (Capacity when elements are not added to the list) --> 0
+   2. What is the initial capacity? --> 0
+   	  default capacity and initial capacity rendu zero nea nduku antea manam ani elements aatach 
+   	  chestea antha capacity anthea.
+   3. Does it allow duplicate elements? --> Yes
+   4. Does it allow null values? --> Yes
+   5. Does it maintain the insertion order? --> Yes
+   6. Does it maintain the sorted order? --> No
+   7. Does it offer the random access of elements? --> Yes
+   8. Is it synchronised? --> No (if yes itea, manam explicit ga "Collections.synchronizedList(li1);"
+      e statement estea apudu synchronize iedi LinkedList.
+   9. What is it good at? --> 
+   
+=========================================================================================================
+
+ * inka LinkedList a migilindi deni gurinchi manam list lonea matladukunam e linkedlist ki size undadu
+   deniki default size manam ani elements add chestea adea deni default size.
+     
+ */
+
+
+
+public class Queue_in_Java {
+
+	private static final String rev = null;
+
+	public static void main(String[] args) {
+		/*
+		//first manam priorityqueue ni chudamu
+		//creation of priorityqueue
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+//		Queue<Integer> q = new PriorityQueue<>();
+		
+		//Addition of elements in priorityqueue
+		pq.add(5);
+		pq.add(6);
+		pq.offer(7);
+		pq.offer(8);
+		pq.offer(9);
+		pq.offer(2);
+		pq.offer(2);
+		pq.offer(1);
+		pq.add(null);
+		pq.offer(null);
+		pq.offer(1);
+		
+		System.out.println(pq);
+		
+		
+		//Retrival of elements in priorityqueue
+		System.out.println(pq.peek());
+		System.out.println(pq); 
+		
+		//Removal of elements in priorityqueue
+		System.out.println(pq.poll());
+		System.out.println(pq);
+		
+		//Verification of elements in priorityqueue
+		System.out.println(pq.contains(7));
+		System.out.println(pq.contains(5));
+		System.out.println(pq.contains(50));
+		
+		
+		//priorityqueue lo elements bayataki thiyatam
+		for (Integer integer : pq) {
+			System.out.println(integer);
+		}
+		
+		while(!pq.isEmpty())
+		{
+			System.out.println(pq.poll());
+		}
+		
+		
+		//entire queue ni clear chaiyali antea
+		pq.clear();
+		System.out.println(pq);
+		*/
+		
+		//ArrayDeque
+		ArrayDeque<String> ad = new ArrayDeque<>();
+//		Deque<String> ad1 = new ArrayDeque<>();
+//		Queue<String> ad2 = new ArrayDeque<>();
+		
+		//Addition of Elements inti ArrayDeque
+		ad.add("banana");
+		ad.addFirst("apple");
+		ad.addLast("orange");
+		ad.offer("mango");
+		ad.offerFirst("guva");
+		ad.offerLast("juice");
+		
+		System.out.println(ad);
+		
+		/*
+		//Retrival of Elements from ArrayDeque
+		System.out.println(ad.peek());
+		System.out.println(ad.peekFirst());
+		System.out.println(ad.peekLast());
+		
+		//Retrival of Elements from ArrayDeque by using "poll"
+		System.out.println(ad.poll());
+		System.out.println(ad);
+		System.out.println(ad.pollFirst());
+		System.out.println(ad);
+		System.out.println(ad.pollLast());
+		System.out.println(ad);
+		*/
+		//Retrival of Elements from ArrayDeque by using "remove"
+		System.out.println(ad.remove());
+		System.out.println(ad);
+		System.out.println(ad.removeFirst());
+		System.out.println(ad);
+		System.out.println(ad.removeLast());
+		System.out.println(ad);
+		
+		//Size of elements
+		System.out.println(ad.size());
+		
+		
+	}
+
+}

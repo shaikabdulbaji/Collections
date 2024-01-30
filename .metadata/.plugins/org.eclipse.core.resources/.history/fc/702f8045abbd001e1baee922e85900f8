@@ -1,0 +1,21 @@
+package a7_Handle_properties_files_in_Java;
+
+/*
+ * Properties file kuda vaka text file lantidea kani deniki daniki koni differences a untai.
+   1. text file ki ".txt" ani extension untundi.
+      properties file ki ".properties" ani extension untundi.
+   2. text file lo text ni store cheasukuntamu sentences rupam lo.
+      properties file lo key value pairs ni store cheasukuntamu.
+      key = value.
+ */
+
+public class Handle_properties_files_in_Java {
+
+	public static void main(String[] args) {
+
+		
+		
+		
+	}
+
+}

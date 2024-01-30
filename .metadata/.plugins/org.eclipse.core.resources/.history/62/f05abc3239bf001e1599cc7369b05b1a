@@ -1,0 +1,91 @@
+package a8_Iterator_ListIterator_Enumeration_in_Java;
+
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Stack;
+import java.util.Vector;
+
+/* 
+ * Iterator - Interface
+   Introduced for iterating the all collection objects 
+   Iterator = Legacy classes + New classes.
+   rendu classes ni iterate chestundi.
+   Legacy classes antea 1.0v intoduce cheasinavi - HashTable, Stack, Vector, Dictionary, Properties
+   1.2v nunchi introduce cheasina classes ani New classes.
+   Iterator is works in one direction as same as enumeration, but it is also read-only with special 
+   permission for removing elements 
+   
+ * Map ki sambandinchina classes ki mothaniki e iterator aneadi pani chaiyadu, e iterator kavali manaki 
+   danitho map lo pani undi antea ela vadukovachu.
+   
+ * e Iterator koni methods unai avi enti antea   
+   ie.hasNext(); --> edi em chestundi antea next element untea boolean ni return chestundi.
+   element untea "true" return chestundi.
+   ie.next(); --> edi em chestundi antea aa element ni get chestundi (or) retrive chestundi.
+   
+   while(ie.hasNext())
+   {
+		ie.next();
+    	ie.remove();
+   }
+   e paina statement estea nai elements vaka dani tarvata vakati remove aavutai.
+   adea vaka vaka element remove chaiyali antea 
+   ie.next();
+   ie.remove();
+   ela estea next() lo element get cheasidi, remove() lo get cheasina element romove cheasidi.
+   ie.next();
+   ie.remove();
+   ela estea next() lo element get cheasidi, remove() lo get cheasina element romove cheasidi.
+   
+ */
+
+public class Iterator_in_Java {
+
+	public static void main(String[] args) {
+		/*
+		//ArrayList
+		ArrayList<Integer> al = new ArrayList<>();
+		al.add(85);
+		al.add(45);
+		al.add(98);
+		
+		Iterator<Integer> ie = al.iterator();
+		while(ie.hasNext())
+		{
+			System.out.println(ie.next());
+		}
+		
+		ie.next();
+		ie.remove(); 
+		
+		while(ie.hasNext())
+		{
+		    ie.next();
+			ie.remove();
+		}
+		System.out.println(al);
+		*/
+		//Vector
+		Vector<Integer> al = new Vector<>();
+		al.add(85);
+		al.add(45);
+		al.add(98);
+		
+		Iterator<Integer> ie = al.iterator();
+		while(ie.hasNext())
+		{
+			System.out.println(ie.next());
+			ie.remove();
+		}
+		
+		System.out.println(al);		
+		
+
+		
+		
+	}
+
+}

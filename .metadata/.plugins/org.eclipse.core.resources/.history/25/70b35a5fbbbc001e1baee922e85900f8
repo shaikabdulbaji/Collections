@@ -1,0 +1,141 @@
+package a5_Queue_in_Java;
+
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+/*
+ * Queue aaneadi collections framework nunchi vastundi. Queue is a part of collections interface 
+   extending the collections framework.
+   
+ * multiple elements aneadi store cheasukotaniki java aneadi queue anea interface ni introduce cheasindi
+   but ekada vaka chinna question list and daniki sambandinchina classes ani ela multiple elements store
+   cheasea panea avi cheaseadi.
+   itea e list ki and queue is difference enti ante, e queue lo vaka special requirement undi aa 
+   requirement ni list and ist lo una a classes fullfill chaiyaleavu andukea e queue.
+   aa reuirement enti antea FIFO(First In First Out) ana mata.
+   Stack --> LIFO (Last In First Out).
+   Queue --> FIFO (First In First Out).
+   
+   Example :
+   Stack --> LIFO (Last In First Out).
+     	|-------| --> Last pentindi last remove chaiyatam.
+     	|		|	
+     	|		|
+     	|		|
+     	
+   Queue --> FIFO (First In First Out).
+     	|		|
+     	|		|	
+     	|		|
+     	|-------| --> First pentindi first remove chaiyatam.
+   
+   In Queue there are 3 classes there are PriorityQueue, ArrayDeque, LinkedList.
+   ArrayDeque, LinkedList classes implements Deque interface and LinkedList implements List interface 
+   also.
+   
+   practical examples of "Queue" :
+   1. cinema ticket kosam "Queue" lo ninchuntam first ticket tisukundu first bayatiki vastadu.
+   2. hospital lo doctor dagara op "Queue" lo pilustaru first evaru vastaro valani pilustaru.
+   3. resturant lo first evaru order estea valaki food prepare ie valakea first order vachidi.
+   
+   practical examples of "PriorityQueue" :
+   1. hospital lo doctor dagara op "Queue" lo pilustaru first evaru vastaro valani pilustaru, kani cases
+      lo vip's vastaru and koni cases lo accident cases vastai and koni cases lo severe patients vastaru
+      elanti time lo public ni chudatam kana elanti urgent cases chudali alanea "Queue" anea concept lo 
+      kuda koni elements ki priority evataniki "PriorityQueue" use chestamu.
+      
+      urgency == critcality == PriorityQueue.
+      
+      simple ga "Queue" --> "manam Queue loki add cheasina elements ni FIFO(First In First Out) method lo 
+      out (or) bayataki tistea dani Queue antamu" (or) "manam a element first estea aa element 
+      first bayataki ratanea queue antamu".
+      
+      simple ga "PriorityQueue" --> "manam Queue loki add cheasina elements ni priority basis lo out 
+      (or) bayataki tistea dani PriorityQueue antamu".
+      
+      priorityqueue lo memory ala untadi antea "head" and "tail" rupam lo untadi.
+      
+      e priorityqueue lo manam ani elements echina or add cheasina highest priority una element a head 
+      loki veltundi. migitha elements ani ala paditea ala untai memory lo.
+    
+   Queue ki sambandinchina classes mothaniki e methods a vadtam :   
+   Addition - offer, add.
+   Retrival - peek.
+   Removal - poll, remove.
+   
+   Addition - offer, add. --> offer pai mousehour cheasi "fn+f3" press chestea danilo internal ga em 
+   method untea akadiki point iedi.
+   alagea add pai mousehour cheasi "fn+f3" press chestea danilo internal ga malli offer anea method nea 
+   point chestundi.
+   that's why both are same methods.
+   
+   Retrival - peek. --> peek antea retrive chaiyatam, edi only get (or) retrive chestundi but remove
+   chaiyadu.
+   e peek method only head lo una element a retrive chestundi.
+   e peek aneadi ani sarlu echina ani sarlu head lo una element a retrive iedi.
+   
+   Removal - poll, remove. --> poll or remove both are same methods. 
+   poll or remove estea head lo element a remove iedi, vaka vela priorityqueue lo em elements leakapotea
+   nuvu "peek" or "poll" method vaditea adi "null" ni retrive chestundi adenti manam akada object create 
+   cheaseatapudu integer echamu kada zero ravali kani null vastundi enti antea aa priorityqueue internal
+   ga array danilo objects untai ga aa object yoka default value null.
+   adea vaka vela "remove" anea method vaditea priorityqueue lo em elements leanapudu apudu exception 
+   vastadi.
+   
+   priorityqueue lo apatikaina while loop(correct priority) vadalli for-each loop(gives without
+   priority) vadakudau.
+     
+ */
+
+public class Queue_in_Java {
+
+	public static void main(String[] args) {
+
+		//first manam priorityqueue ni chudamu
+		//creation of priorityqueue
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+//		Queue<Integer> q = new PriorityQueue<>();
+		
+		//Addition of elements in priorityqueue
+		pq.add(5);
+		pq.add(6);
+		pq.offer(7);
+		pq.offer(8);
+		pq.offer(9);
+		pq.offer(2);
+		pq.offer(1);
+		
+		System.out.println(pq);
+		
+		/*
+		//Retrival of elements in priorityqueue
+		System.out.println(pq.peek());
+		System.out.println(pq); 
+		
+		//Removal of elements in priorityqueue
+		System.out.println(pq.poll());
+		System.out.println(pq);
+		
+		//Verification of elements in priorityqueue
+		System.out.println(pq.contains(7));
+		System.out.println(pq.contains(5));
+		System.out.println(pq.contains(50));
+		
+		
+		//priorityqueue lo elements bayataki thiyatam
+		for (Integer integer : pq) {
+			System.out.println(integer);
+		}
+		
+		while(!pq.isEmpty())
+		{
+			System.out.println(pq.poll());
+		}
+		*/
+		
+		//entire queue ni clear chaiyali antea
+		pq.clear();
+		System.out.println(pq);
+	}
+
+}

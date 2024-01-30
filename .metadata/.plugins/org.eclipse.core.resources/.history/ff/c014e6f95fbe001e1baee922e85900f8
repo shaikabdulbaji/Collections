@@ -1,0 +1,66 @@
+package a7_Handle_properties_files_in_Java;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.Set;
+
+/*
+ * Properties file kuda vaka text file lantidea kani deniki daniki koni differences a untai.
+   1. text file ki ".txt" ani extension untundi.
+      properties file ki ".properties" ani extension untundi.
+   2. text file lo text ni store cheasukuntamu sentences rupam lo.
+      properties file lo key value pairs ni store cheasukuntamu.
+      key = value.
+      
+ * Properties file lo manam username, password, applicationURL, dbusername, dbpassword, elanti vani aa
+   properties file lo petukuntamu. apatikaina application ki sambandichina data veru ga undali like 
+   properties file lo alaga.
+   
+ * Properties file aneadi data store cheasukotaniki adi vaka structure lo andukea edi vaka data structure
+   a.
+   
+   
+ */
+
+public class Handle_properties_files_in_Java {
+
+	public static void main(String[] args) throws Exception {
+
+		File file = new File("dbConfig.properties"); //--> edi file creation ki object
+		
+		if(!file.exists()) //-->edi file aneadi leadu anuko
+			file.createNewFile(); //--> edi file create chai ani
+		
+//		System.out.println(file.exists()); //--> edi file undo leado chudataniki
+//		file.delete(); //--> edi file delete chaiyataniki
+//		System.out.println(file.exists());
+		
+		//Epati daka data ni add chaiyatm chusamu
+		Properties prop = new Properties();
+		/*
+		prop.setProperty("url", "localhost");
+		prop.setProperty("username", "shaikabdul");
+		prop.setProperty("password", "abdul1234");
+		
+		FileOutputStream fos = new FileOutputStream(file);
+		prop.store(fos, "Shaik Abdul Baji"); //--> e line comments laga print iedi properties file lo.
+		*/
+		
+		FileInputStream fis = new FileInputStream(file);
+		prop.load(fis);
+		
+		//Manaki only keys kavali antea
+//		Set<String> keys = prop.stringPropertyNames();  // (or)
+//		Set<Object> keys = prop.keySet();  // (or)
+//		System.out.println(keys);
+		
+		//Manaki only values kavali antea
+		Collection<Object> values = prop.values();
+		System.out.println(values);
+	}
+
+}
